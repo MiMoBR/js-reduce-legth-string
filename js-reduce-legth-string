@@ -1,0 +1,19 @@
+				var rowsCount = $('#initManagePromoCode tbody tr');
+				
+				for(var i=0; i < rowsCount.length ; i++){
+					var textConv = document.getElementsByClassName('textReader')[i].textContent;
+					var fullText = document.getElementsByClassName('textReaderFullText')[i].innerHTML = textConv;
+					var newTextConv = fullText.trim().length > 20 ? $.trim(textConv).substring(0, 20).split(" ").slice(0, -1).join(" ") + "..." : fullText.trim() ;
+					
+					document.getElementsByClassName('textReader')[i].innerText = newTextConv;
+
+						$(".textReader").mouseover(function(){
+							var popuptext = $(this).parent().find('td.hideText input').text();
+							
+							if(popuptext.trim().length > 20){
+								$('.textReader').attr('aria-label',popuptext);
+							}else{
+								$('.textReader').removeAttr('aria-label');
+							}
+						});
+				}
